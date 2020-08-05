@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>grep()方法: 在给定文件中查找与设定条件相符字符串的命令
+    <p>为function提供了两个参数：其一为当前迭代的数组元素，其二是当前迭代元素在数组中的索引。</p>
+</div>
+<div>join()方法用于把数组中所有元素放入一个字符串</div>
+
+<p class="text"></p>
+<p class="text2"></p>
+<p class="text2"></p>
+
+<hr>
+
+<div>
+    <p>sort()方法：对数组的元素进行排序。</p>
+    <p>排序顺序为按字母升序</p>
+    <p>当数字是按字母顺序排列时"40"将排在"5"前面。</p>
+    <p>用数字排序，你必须通过一个函数作为参数来调用</p>
+    <p>函数指定数字是按照升序还是降序排列。</p>
+</div>
+<div>
+    <p>数字降序：<span id="demo"></span></p>
+    <p>数字升序：<span id="demo2"></span></p>
+    <p>字母降序：<span id="demo3"></span></p>
+</div>
+
+<div>
+    <p>find()方法：按条件查找</p>
+    <p>查找年龄大于等于18的第一个元素</p>
+    <p>排序前:<span id="arr"></span></p>
+    <p>排序后：<span id="arr2"></span></p>
+</div>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+    // grep()
+    $(function () {
+        var arr = [ 1, 9, 3, 8, 6, 1, 5, 9, 4, 7, 3, 8, 6, 9, 1 ];
+        $( ".text" ).text( arr.join( ", " ) );
+        arr = jQuery.grep(arr, function( n, i ) {
+            return ( n !== 5 && i > 4 );
+        });
+        $( ".text1" ).text( arr.join( ", " ) );  // 1, 9, 4, 7, 3, 8, 6, 9, 1
+        arr = jQuery.grep(arr, function( a ) {
+            return a !== 9;
+        });
+        $( ".text2" ).text( arr.join( ", " ) );   // 1, 4, 7, 3, 8, 6, 1
+    });
+
+    // sort()
+    // 数字升序
+    function myFunction(){
+        var points = [40,100,1,5,25,10];
+        points.sort(function(a,b){
+            console.log(points);
+            return a-b;
+        });
+        var x=document.getElementById("demo");
+        x.innerHTML=points;
+    }
+    myFunction();
+
+    // 数字降序
+    function myFunction2(){
+        var points = [40, 100, 1, 5, 25, 10];
+        points.sort(function(a, b){
+            console.log(points);
+            return b-a;
+        });
+        var x=document.getElementById("demo2");
+        x.innerHTML=points;
+    }
+    myFunction2();
+
+    // 字母降序
+    var fruits = ["Banana", "Orange", "Apple", "Mango"];
+    fruits.sort();
+    fruits.reverse();
+    var x=document.getElementById("demo3");
+    x.innerHTML=fruits.join(",");
+
+    // find() 按条件搜索
+    var ages = [3, 10, 18, 20];
+    document.getElementById("arr").innerHTML = ages;
+    function checkAdult(age) {
+        return age >= 18;
+    }
+    function findFun() {
+        document.getElementById("arr2").innerHTML = ages.find(checkAdult);
+    }
+    findFun();
+</script>
+</body>
+</html>
